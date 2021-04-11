@@ -1,0 +1,33 @@
+specVersion: 0.0.2
+description: TokenFlip
+repository: https://github.com/graphprotocol/example-subgraph
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: TokenFlip
+    network: matic
+    source:
+      address: "0xb284847622f9d1E7CED0d860b1f46Eaac4011681"
+      abi: TokenFlip
+      startBlock: 12579118
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Game
+        - User
+      abis:
+        - name: TokenFlip
+          file: TokenFlip/abis/TokenFlip.json
+      eventHandlers:
+        - event: GameCreated(indexed uint256,indexed address,indexed address,uint256)
+          handler: handleGameCreated
+        - event: GameDeleted(indexed uint256)
+          handler: handleGameDeleted
+        - event: GameChallenged(indexed uint256,indexed address)
+          handler: handleGameChallenged
+        - event: GameRevealed(indexed uint256,indexed address,address,uint256)
+          handler: handleGameRevealed
+      file: TokenFlip/TokenFlip.wasm

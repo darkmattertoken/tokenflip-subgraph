@@ -1,0 +1,16 @@
+type Game @entity {
+  id: ID!
+  status: String!
+  creator: Bytes!
+  challenger: Bytes
+  winner: Bytes
+  token: Bytes!
+  amount: BigInt!
+  lastChangeTimestamp: BigInt!
+}
+
+type User @entity {
+  id: ID!
+  wins: BigInt
+  losses: BigInt
+}
