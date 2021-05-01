@@ -14,3 +14,15 @@ type User @entity {
   wins: BigInt
   losses: BigInt
 }
+
+type DayData @entity {
+  id: ID!
+  date: Int!
+  dailyETH: BigDecimal!
+  totalETH: BigDecimal!
+}
+
+type OverallData @entity {
+  id: ID!
+  totalETH: BigDecimal!
+}

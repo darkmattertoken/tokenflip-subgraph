@@ -186,3 +186,101 @@ export class User extends Entity {
     }
   }
 }
+
+export class DayData extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save DayData entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save DayData entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("DayData", id.toString(), this);
+  }
+
+  static load(id: string): DayData | null {
+    return store.get("DayData", id) as DayData | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get date(): i32 {
+    let value = this.get("date");
+    return value.toI32();
+  }
+
+  set date(value: i32) {
+    this.set("date", Value.fromI32(value));
+  }
+
+  get dailyETH(): BigDecimal {
+    let value = this.get("dailyETH");
+    return value.toBigDecimal();
+  }
+
+  set dailyETH(value: BigDecimal) {
+    this.set("dailyETH", Value.fromBigDecimal(value));
+  }
+
+  get totalETH(): BigDecimal {
+    let value = this.get("totalETH");
+    return value.toBigDecimal();
+  }
+
+  set totalETH(value: BigDecimal) {
+    this.set("totalETH", Value.fromBigDecimal(value));
+  }
+}
+
+export class OverallData extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save OverallData entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save OverallData entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("OverallData", id.toString(), this);
+  }
+
+  static load(id: string): OverallData | null {
+    return store.get("OverallData", id) as OverallData | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get totalETH(): BigDecimal {
+    let value = this.get("totalETH");
+    return value.toBigDecimal();
+  }
+
+  set totalETH(value: BigDecimal) {
+    this.set("totalETH", Value.fromBigDecimal(value));
+  }
+}
